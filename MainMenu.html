@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Basic button styling */
+        button {
+            background-color: #343736; /* Button background color */
+            color: white; /* Button text color */
+            padding: 14px 20px; /* Button padding */
+            margin: 8px 0; /* Margin for spacing */
+            border: none; /* Remove borders */
+            cursor: pointer; /* Pointer cursor on hover */
+            width: 100%; /* Full width inside the table cell */
+        }
+
+        /* Button hover effect */
+        button:hover {
+            background-color: #555555; /* Change the background color on hover */
+            color: #ffffff; /* Optional: Change the text color on hover */
+        }
+
+        /* Table styling */
+        table {
+            width: 100%; /* Full width table */
+            margin: 20px auto; /* Centers the table horizontally */
+        }
+        
+
+        /* Table cell styling */
+        td {
+            text-align: center; /* Centers content inside the cells */
+            padding: 10px; /* Adds padding to cells */
+        }
+        header table {
+            margin-top: 0px; /* Space above the table */
+        }
+    </style>
+    <title>Main Menu</title>
+    <link rel="icon" href="title.jpg" type="image/jbeg"></link>
+</head>
+<body style="background-color: rgb(130, 130, 130);">
+
+    <header style="background-color: black">
+        <img src="heading1.jpg" alt="Rescue911 wallpaper" width="50%">
+    </header>
+    <table>
+        <tr> 
+            <td><button type="button" onclick="redirectToEnterData()">Log New Emergency Case</button></td>
+            <td><button type="button" onclick="redirectToEnterData()">View All Emergency</button></td>
+        <tr>
+            <td><button type="button" onclick="redirectToEnterData()">Assign Response Team</button></td>
+            <td><button type="button" onclick="redirectToEnterData()">View EMT Availability</button></td>
+        </tr>
+            <td><button type="button" onclick="redirectToEnterData()">Log Shift</button></td>
+            <td><button type="button" onclick="redirectToLogIn()">Log Out</button></td>
+        </tr>
+    </table>
+    <script>
+        function redirectToLogIn() {
+            window.location.href = "Rescue911Website.html";  // Redirects to EnterDataPage.html on button click
+        }
+        function redirectToEnterData() {
+            window.location.href = "EnterDataPage.html";  // Redirects to EnterDataPage.html on button click
+        }
+    </script>
+</body>
+</html>

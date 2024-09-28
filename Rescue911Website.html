@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head> 
+    <meta name = "viewport" content="width=device-width, intial-scale=1.0" >
+        <style>
+            img 
+            {
+                width: 100%;
+            }
+            form 
+            {
+                width: 50%;
+                margin: 10px auto;
+                border: 10px solid #ffffff;
+            }
+            input[type=text], input[type=password]
+            {
+                width: 100%; /* Makes the input take up 100% of the width of its container */
+                padding: 12px 20px; /* Adds padding inside the input: 12px on top and bottom, 20px on left and right */
+                margin: 8px 0; /* Adds 8px of margin on the top and bottom, 0 on the sides */
+                display: inline-block;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+            }
+            button 
+            {
+                background-color: #343736;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+            }
+            button:hover 
+            {
+                opacity: 0.9;
+            }
+            span.psw 
+            {
+                float: right;        /* Aligns the span element to the right side of its containing element */
+                padding-top: 16px;   /* Adds 16px of padding above the text, pushing it down slightly */
+            }
+        </style>
+        <title>
+            Login - Emergency Rescue Information System
+        </title>
+        <link rel="icon" href="title.jpg" type="image/jbeg">
+    </head>
+    <body style = "background-color: #575757;">
+        <img src="heading1.jpg" 
+        alt="Rescue911 wallpaper" width = 100%>
+        <form action="/action_page.php" method="post" style="background-color: white;">
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+            
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                    
+                <button type="submit" onclick="redirectToMainMenu()">Login</button>
+                <label>
+                  <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+              </div>
+             <script>
+                function redirectToMainMenu() 
+                {
+                    window.location.href = "MainMenu.html";  // Redirects to EnterData.html on button click
+                }
+            </script>
+       </body>
+</html>    
+ 
