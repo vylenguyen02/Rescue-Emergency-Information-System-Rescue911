@@ -50,25 +50,40 @@
     <body style = "background-color: #575757;">
         <img src="heading1.jpg" 
         alt="Rescue911 wallpaper" width = 100%>
-        <form action="/action_page.php" method="post" style="background-color: white;">
+        <form method="post" style="background-color: white;">
             <div class="container">
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
+                <label for="username"><b>Username</b></label>
+                <input type="text" class="username_input" placeholder="Enter Username" name="username" required>
             
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="password"><b>Password</b></label>
+                <input type="password" class="password_input" placeholder="Enter Password" name="password" required>
                     
                 <button type="submit" onclick="redirectToMainMenu()">Login</button>
                 <label>
                   <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label>
-              </div>
-             <script>
+            </div>
+            <script>
                 function redirectToMainMenu() 
                 {
-                    window.location.href = "MainMenu.html";  // Redirects to EnterData.html on button click
+                    event.preventDefault();//prevent page from refreshing
+                    
+                    //log the variable in the console
+                    console.log("Username", username);
+                    console.log("Password", password);
+        
+                    var username = document.getElementsByClassName("username_input")[0].value;
+                    var password = document.getElementsByClassName("password_input")[0].value;
+        
+        
+                    if (username && password)
+                    {
+                        window.location = "MainMenu.html";  // Redirects to EnterData.html on button click
+                    }
                 }
             </script>
-       </body>
+            
+    </body>
+    
 </html>    
  
