@@ -39,7 +39,7 @@
             span.psw 
             {
                 float: right;        /* Aligns the span element to the right side of its containing element */
-                padding-top: 16px;   /* Adds 16px of padding above the text, pushing it down slightly */
+                padding-top: 0px;   /* Adds 16px of padding above the text, pushing it down slightly */
             }
         </style>
         <title>
@@ -62,6 +62,7 @@
                 <label>
                   <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label>
+                <span class="psw"><a href="forget-my-password.html"> Forgot password?</a></span>
             </div>
             <script>
                 function redirectToMainMenu() 
@@ -75,10 +76,17 @@
                     var username = document.getElementsByClassName("username_input")[0].value;
                     var password = document.getElementsByClassName("password_input")[0].value;
         
-        
+                    
                     if (username && password)
                     {
                         window.location = "MainMenu.html";  // Redirects to EnterData.html on button click
+                        //<!--
+                        //if (username == 'dispatcher')
+                        //{
+                           // window.location = "dispatcher-mainmenu.html";
+                        //} 
+                        //if (username == '')
+                        //==-->
                     }
                 }
             </script>
