@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Information Form</title>
     <style>
         /* Basic button styling */
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
         .navbar {
             width: 100%;
             background-color: #555;
@@ -11,277 +17,236 @@
             margin: 0;
             padding: 0;
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
         }
-
         .navbar a {
-            float: center;
             padding: 12px;
             color: white;
             text-decoration: none;
             font-size: 17px;
             text-align: center;
-            width: 17.28%;
+            width: 15%;
+            flex-grow: 1;
         }
-
         .navbar a:hover {
             background-color: #000;
         }
-
         .active {
             background-color: #ff0000;
         }
-
-        @media screen and (max-width: 500px) {
-            .navbar a {
-                float: none;
-                display: block;
-            }
-        }
-
         label {
-            color: rgb(0, 0, 0);
-            margin-right: 10px; /* Space between label and input */
-            white-space: nowrap; /* Prevent label from wrapping to a new line */
+            color: #333;
+            margin-right: 10px;
+            white-space: nowrap;
         }
-
-        input[type=text], select {
-            width: 100%; /* Set input and select width to 100% */
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 10px;
             box-sizing: border-box;
-            font-size: 16px; /* Ensure consistent font size */
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
-
-        /* Use flex to align the input field and dropdown side by side */
+        textarea {
+            height: 100px;
+            resize: none;
+        }
         .form-section {
             display: flex;
-            justify-content: center; /* Center the form section */
-            align-items: center;
-            width: 80%; /* Set the width to 80% */
-            margin: 10px auto; /* Reduce margin to make sections closer */
-        }
-
-        .form-section > div {
-            display: flex; /* Use flex for label and input */
-            align-items: center; /* Align items in the center */
-            margin-right: 50px; /* Adds space between elements */
-            width: 100%; /* Allow div to take full width */
-        }
-
-        .form-container {
-            padding-left: 20px; /* Space between the form and the left edge */
-            display: flex;
             flex-direction: column; /* Stack elements vertically */
-            align-items: center; /* Center items */
-            width: 80%; /* Set container width to 80% */
-            margin: 0 auto; /* Center the form container */
+            width: 80%; /* Set width to 80% */
+            margin: 20px auto; /* Center the form section */
         }
-
-        /* Address section to maintain consistent layout */
-        .address-section {
-            display: flex;
-            justify-content: center; /* Center the address section */
-            align-items: center; /* Align items in the center */
-            width: 80%; /* Set width to match the form section */
-            margin-top: 10px; /* Reduce margin on top */
+        .form-section > div {
+            margin-bottom: 15px; /* Space between form elements */
         }
-
-        /* City and State section to align with other sections */
-        .city-state-section {
-            display: flex;
-            justify-content: center; /* Center the city-state section */
-            align-items: center; /* Align items in the center */
-            width: 80%; /* Set width to match the form section */
-            margin-top: 10px; /* Add margin for spacing */
+        .submit-button, .clear-button {
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 10px;
         }
-
-        .city-state-section > div {
-            display: flex; /* Use flex for label and input */
-            align-items: center; /* Align items in the center */
-            margin-right: 50px; /* Adds space between city and state */
-            width: 100%; /* Allow div to take full width */
+        .submit-button:hover, .clear-button:hover {
+            background-color: black;
         }
-
-        .city-state-section > div:last-child {
-            margin-right: 0; /* Remove margin from the last item */
+        .button-container {
+            display: flex; /* Create a flex container */
+            justify-content: flex-start; /* Align buttons to the left */
         }
-
-        /* Description section */
-        .description-section {
-            width: 80%; /* Set width to match the form section */
-            margin-top: 10px; /* Add margin for spacing */
-        }
-
-        textarea {
-            width: 100%; /* Set textarea width to 100% */
-            height: 100px; /* Set height for the textarea */
-            padding: 12px 20px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            font-size: 16px; /* Ensure consistent font size */
-        }
-
-        /* Submit button styling */
-        .submit-button {
-            margin-top: 20px; /* Space above the button */
-            padding: 10px 20px; /* Button padding */
-            background-color: #4CAF50; /* Green background */
-            color: white; /* White text */
-            border: none; /* Remove border */
-            border-radius: 5px; /* Rounded corners */
-            font-size: 16px; /* Font size */
-            cursor: pointer; /* Pointer cursor on hover */
-        }
-
-        .submit-button:hover {
-            background-color: #45a049; /* Darker green on hover */
-        }
-        
     </style>
-    <title>Log New Emergency Case</title>
-    <link rel="icon" href="title.jpg" type="image/jbeg"></link>
-    <script type = "text/javascript">
-        <!--
-        function message ()
-        {
-        window.alert("A new faculty member has been added");
-        }
-        //-->
-        </script>
 </head>
-<body style="background-color: rgb(255, 255, 255);">
-
-    <header style="background-color: black">
-        <img src="heading1.jpg" alt="Rescue911 wallpaper" width="50%">
-        <div class="navbar">
+<body>
+    <header style="background-color: black;">
+        <img src="heading1.jpg" alt="Emergency Response" width="50%">
+        <div class="navbar" style="background-color: red;">
             <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Log New Emergency Case</a> 
             <a class="active" href="#"><i class="fa fa-fw fa-search"></i> View All Emergency Cases</a> 
-            <a class="active" href="#"><i class="fa fa-fw fa-envelope"></i> Assign Response Team</a> 
             <a class="active" href="#"><i class="fa fa-fw fa-user"></i> View EMT Availability</a>
             <a class="active" href="#"><i class="fa fa-fw fa-user"></i> Log Shift</a>
+            <a class="active" href="#"><i class="fa fa-fw fa-user"></i> Account Center</a>
         </div>
     </header>
 
-    <div class="form-container">
-        <div class="form-section">
-            <!-- Caller ID input -->
-            <div>
-                <label for="callerid"><b>Caller ID:</b></label>
-                <input type="text" placeholder="Caller ID" name="callerid" required>
-            </div>
-            <!-- Caller number input -->
-            <div>
-                <label for="callernumber"><b>Caller Number:</b></label>
-                <input type=" number" placeholder="Phone Number" name="callernumber" required>
-            </div>
+    <form class="form-section">
+        <h3>Caller Information</h3>
+        <div>
+            <label for="callername"><b>Caller’s Name:</b></label>
+            <input type="text" placeholder="Caller’s Name" id="callerName" name="callername" required>
+        </div>
+        <div>
+            <label for="callernumber"><b>Caller’s Phone Number:</b></label>
+            <input type="number" placeholder="Phone Number" id="callerNumber" name="callernumber" required>
+        </div>
+        <div>
+            <label for="callerlocation"><b>Caller’s Location:</b></label>
+            <input type="text" placeholder="Caller’s Location" id="callerLocation" name="callerlocation" required>
+        </div>
 
-            <!-- Emergency Level dropdown -->
-            <div>
-                <label for="type"><b>Emergency Level:</b></label>
-                <select name="area" required>
-                    <option value="" disabled selected>Select Emergency Level</option>
-                    <option value="minor">Minor</option>
-                    <option value="stable">Stable</option>
-                    <option value="serious">Serious</option>
-                    <option value="critical">Critical</option>
-                </select>
-            </div>
+        <h3>Incident Location</h3>
+        <div>
+            <label for="incidentlocation"><b>Exact Address or Location:</b></label>
+            <input type="text" placeholder="Street name, house number, landmarks" id="incidentLocation" name="incidentlocation" required>
+        </div>
+        <div>
+            <label for="environmentdetails"><b>Details about the Environment:</b></label>
+            <textarea placeholder="Apartment number, floor, access info, etc." id="environmentDetails" name="environmentdetails" required></textarea>
+        </div>
+
+        <h3>Type of Emergency</h3>
+        <div>
+            <label for="natureofemergency"><b>Nature of the Emergency:</b></label>
+            <input type="text" placeholder="Type of Emergency" id="natureOfEmergency" name="natureofemergency" required>
+        </div>
+        <div>
+            <label for="specifics"><b>Specifics of the Incident:</b></label>
+            <textarea placeholder="Heart attack, severe bleeding, etc." id="specifics" name="specifics" required></textarea>
+        </div>
+
+        <h3>Patient Information (if medical)</h3>
+        <div>
+            <label for="numberofpatients"><b>Number of Patients:</b></label>
+            <input type="number" placeholder="Single or multiple victims" id="numberOfPatients" name="numberofpatients" required>
+        </div>
+        <div>
+            <label for="patientage"><b>Patient’s Age and Gender</b></label>
+            <input type="text" placeholder="Patient's Age and Gender" id="patientAgeGender" name="patientagegender">
         </div>
         
-        <!-- Address section -->
-        <div class="address-section">
-            <div style="flex: 1; display: flex; align-items: center;">
-                <label for="address"><b>Address:</b></label>
-                <input type="text" placeholder="Address" name="addr" required>
-            </div>
+        <div>
+            <label for="patientcondition"><b>Patient’s Condition:</b></label>
+            <textarea placeholder="Conscious/unconscious, breathing/not breathing, etc." id="patientCondition" name="patientcondition"></textarea>
+        </div>
+        <div>
+            <label for="medicalhistory"><b>Any Known Medical History:</b></label>
+            <textarea placeholder="Chronic conditions, allergies, etc." id="medicalHistory" name="medicalhistory"></textarea>
         </div>
 
-        <!-- City and State section -->
-        <div class="city-state-section">
-            <div>
-                <label for="city"><b>City:</b></label>
-                <input type="text" placeholder="City" name="city" required>
-            </div>
-            <div>
-                <label for="state"><b>State:</b></label>
-                <select name="state" required>
-                    <option value="" disabled selected>Select your state</option>
-                    <option value="AL">Alabama</option>
-                    <option value="AK">Alaska</option>
-                    <option value="AZ">Arizona</option>
-                    <option value="AR">Arkansas</option>
-                    <option value="CA">California</option>
-                    <option value="CO">Colorado</option>
-                    <option value="CT">Connecticut</option>
-                    <option value="DE">Delaware</option>
-                    <option value="FL">Florida</option>
-                    <option value="GA">Georgia</option>
-                    <option value="HI">Hawaii</option>
-                    <option value="ID">Idaho</option>
-                    <option value="IL">Illinois</option>
-                    <option value="IN">Indiana</option>
-                    <option value="IA">Iowa</option>
-                    <option value="KS">Kansas</option>
-                    <option value="KY">Kentucky</option>
-                    <option value="LA">Louisiana</option>
-                    <option value="ME">Maine</option>
-                    <option value="MD">Maryland</option>
-                    <option value="MA">Massachusetts</option>
-                    <option value="MI">Michigan</option>
-                    <option value="MN">Minnesota</option>
-                    <option value="MS">Mississippi</option>
-                    <option value="MO">Missouri</option>
-                    <option value="MT">Montana</option>
-                    <option value="NE">Nebraska</option>
-                    <option value="NV">Nevada</option>
-                    <option value="NH">New Hampshire</option>
-                    <option value="NJ">New Jersey</option>
-                    <option value="NM">New Mexico</option>
-                    <option value="NY">New York</option>
-                    <option value="NC">North Carolina</option>
-                    <option value="ND">North Dakota</option>
-                    <option value="OH">Ohio</option>
-                    <option value="OK">Oklahoma</option>
-                    <option value="OR">Oregon</option>
-                    <option value="PA">Pennsylvania</option>
-                    <option value="RI">Rhode Island</option>
-                    <option value="SC">South Carolina</option>
-                    <option value="SD">South Dakota</option>
-                    <option value="TN">Tennessee</option>
-                    <option value="TX">Texas</option>
-                    <option value="UT">Utah</option>
-                    <option value="VT">Vermont</option>
-                    <option value="VA">Virginia</option>
-                    <option value="WA">Washington</option>
-                    <option value="WV">West Virginia</option>
-                    <option value="WI">Wisconsin</option>
-                    <option value="WY">Wyoming</option>
-                </select>
-            </div>
+        <h3>Incident Details</h3>
+        <div>
+            <label for="timeincident"><b>Time of the Incident:</b></label>
+            <input type="text" placeholder="When did it happen?" id="timeIncident" name="timeincident" required>
+        </div>
+        <div>
+            <label for="causecircumstance"><b>Cause or Circumstance:</b></label>
+            <textarea placeholder="What led to the emergency?" id="causeCircumstance" name="causecircumstance" required></textarea>
+        </div>
+        <div>
+            <label for="potentialhazards"><b>Potential Hazards:</b></label>
+            <textarea placeholder="Fire, downed power lines, etc." id="potentialHazards" name="potentialhazards"></textarea>
         </div>
 
-        <!-- Description section -->
-        <div class="description-section">
-            <label for="description"><b>Description:</b></label>
-            <textarea id="description" name="description" placeholder="Enter a description (max 200 words)" maxlength="200" required></textarea>
+        <h3>Bystander Actions</h3>
+        <div>
+            <label for="aidprovided"><b>Is Anyone Providing Aid?:</b></label>
+            <textarea placeholder="First aid, CPR, etc." id="aidProvided" name="aidprovided"></textarea>
+        </div>
+        <div>
+            <label for="specialneeds"><b>Special Needs or Equipment:</b></label>
+            <textarea placeholder="Does the scene require specialized equipment?" id="specialNeeds" name="specialneeds"></textarea>
         </div>
 
-        <!-- Error message -->
-        <!--<div class="error-message" id="error-message">Please fill out the required sections.</div>-->
+        <h3>Response Units Required</h3>
+        <div>
+            <label for="typeofunits"><b>Type of Units Needed:</b></label>
+            <input type="text" placeholder="Ambulance, fire department, etc." id="typeOfUnits" name="typeofunits" required>
+        </div>
+        <div>
+            <label for="prioritylevel"><b>Priority Level:</b></label>
+            <select name="prioritylevel" required>
+                <option value="" disabled selected>Select Priority Level</option>
+                <option value="urgent">Urgent (life-threatening)</option>
+                <option value="priority">Priority (serious, but stable)</option>
+                <option value="routine">Routine (non-life-threatening)</option>
+            </select>
+        </div>
 
-        <!-- Submit button -->
-        <button type="submit" class="submit-button" onclick="ViewAvalabilityPage()">Submit</button>
+        <h3>Communication Information</h3>
+        <div>
+            <label for="crossstreets"><b>Cross Streets or GPS Coordinates:</b></label>
+            <textarea placeholder="Nearest intersections or coordinates" id="crossStreets" name="crossstreets"></textarea>
+        </div>
+        <div>
+            <label for="accessinfo"><b>Additional Access Information:</b></label>
+            <textarea placeholder="Gated communities, restricted areas, etc." id="accessInfo" name="accessinfo"></textarea>
+        </div>
+
+        <h3>Special Instructions</h3>
+        <div>
+            <label for="safetyprecautions"><b>Safety Precautions for the EMT/Responders:</b></label>
+            <textarea placeholder="Potential dangers, etc." id="safetyPrecautions" name="safetyprecautions"></textarea>
+        </div>
+        <div>
+            <label for="preferredroute"><b>Preferred Route or Obstacles:</b></label>
+            <textarea placeholder="Blocked roads, traffic jams, etc." id="preferredRoute" name="preferredroute"></textarea>
+        </div>
+
+        <h3>Dispatcher’s Notes</h3>
+        <div>
+            <label for="timestamp"><b>Timestamp of the Call:</b></label>
+            <input type="text" placeholder="Exact time the call was received" id="timestamp" name="timestamp" required>
+        </div>
+        <div>
+            <label for="dispatcherid"><b>Dispatcher’s ID:</b></label>
+            <input type="text" placeholder="Identification of the dispatcher" id="dispatcherID" name="dispatcherid" required>
+        </div>
+        <div>
+            <label for="responsetime"><b>Response Time:</b></label>
+            <input type="text" placeholder="When the emergency unit is dispatched" id="responseTime" name="responsetime" required>
+        </div>
+
+        <div class="button-container">
+            <button type="submit" class="submit-button">Submit Emergency Information</button>
+            <button type="button" class="clear-button" onclick="clearForm()">Clear Form</button>
+        </div>
     </form>
-</div>
+    
+    <script>
+        // Add an event listener to the form
+        document.querySelector('.form-section').addEventListener('submit', previewInfo);
 
-<script>
-    function ViewAvalabilityPage(){
-        window.location.href = "ViewAvalability.html";  // Redirects to EnterDataPage.html on button click
-    }
-</script>
-    </div>
+        function previewInfo(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get values from the input fields
+            const formData = new FormData(event.target);
+            const params = new URLSearchParams();
+
+            for (const [key, value] of formData.entries()) {
+                params.append(key, value);
+            }
+
+            // Redirect to the preview page with query parameters
+            window.location.href = `PreviewInformation.html?${params.toString()}`;
+        }
+
+        function clearForm() {
+            document.querySelector('.form-section').reset(); // Reset all form fields to their default values
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Emergency Information</title>
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #555;
+            overflow: auto;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .navbar a {
+            padding: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            text-align: center;
+            width: 15%;
+            flex-grow: 1;
+        }
+        .navbar a:hover {
+            background-color: #000;
+        }
+        .active {
+            background-color: #ff0000;
+        }
+        h2 {
+            color: #333;
+        }
+        .info-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .info-section label {
+            font-weight: bold;
+            color: #555;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .back-button, .confirm-button {
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .back-button:hover, .confirm-button:hover {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <header style="background-color: black;">
+        <img src="heading1.jpg" alt="Emergency Response" width="50%">
+        <div class="navbar" style="background-color: red;">
+            <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Log New Emergency Case</a> 
+            <a class="active" href="#"><i class="fa fa-fw fa-search"></i> View All Emergency Cases</a> 
+            <a class="active" href="#"><i class="fa fa-fw fa-user"></i> View EMT Availability</a>
+            <a class="active" href="#"><i class="fa fa-fw fa-user"></i> Log Shift</a>
+            <a class="active" href="#"><i class="fa fa-fw fa-user"></i> Account Center</a>
+        </div>
+    </header>
+
+    <h2>Preview Emergency Information</h2>
+    
+    <div class="info-section">
+        <h3>Caller Information</h3>
+        <p><label>Caller’s Name:</label> <span id="previewCallerName"></span></p>
+        <p><label>Caller’s Phone Number:</label> <span id="previewCallerNumber"></span></p>
+        <p><label>Caller’s Location:</label> <span id="previewCallerLocation"></span></p>
+    </div>
+
+    <div class="info-section">
+        <h3>Incident Location</h3>
+        <p><label>Exact Address or Location:</label> <span id="previewIncidentLocation"></span></p>
+        <p><label>Details about the Environment:</label> <span id="previewEnvironmentDetails"></span></p>
+    </div>
+
+    <div class="info-section">
+        <h3>Type of Emergency</h3>
+        <p><label>Nature of the Emergency:</label> <span id="previewNatureOfEmergency"></span></p>
+        <p><label>Specifics of the Incident:</label> <span id="previewSpecifics"></span></p>
+    </div>
+
+    <div class="info-section">
+        <h3>Patient Information (if medical)</h3>
+        <p><label>Number of Patients:</label> <span id="previewNumberOfPatients"></span></p>
+        <p><label>Patient’s Age:</label> <span id="previewPatientAge"></span></p>
+        <p><label>Patient's Gender:</label> <span id="previewGender"></span></p>
+        <p><label>Patient’s Condition:</label> <span id="previewPatientCondition"></span></p>
+        <p><label>Any Known Medical History:</label> <span id="previewMedicalHistory"></span></p>
+    </div>
+
+    <div class="info-section">
+        <h3>Incident Details</h3>
+        <p><label>Time of the Incident:</label> <span id="previewTimeIncident"></span></p>
+        <p><label>Cause or Circumstance:</label> <span id="previewCauseCircumstance"></span></p>
+        <p><label>Potential Hazards:</label> <span id="previewPotentialHazards"></span></p>
+    </div>
+
+    <div class="info-section">
+        <h3>Bystander Actions</h3>
+        <p><label>Is Anyone Providing Aid?:</label> <span id="previewAidProvided"></span></p>
+        <p><label>Special Needs or Equipment:</label> <span id="previewSpecialNeeds"></span></p>
+    </div>
+
+    <div class="info-section">
+        <h3>Response Units Required</h3>
+        <p><label>Type of Units Needed:</label> <span id="previewTypeOfUnits"></span></p>
+        <p><label>Priority Level:</label> <span id="previewPriorityLevel"></span></p>
+    </div>
+
+    <div class="info-section">
+        <h3>Communication Information</h3>
+        <p><label>Cross Streets or GPS Coordinates:</label> <span id="previewCrossStreets"></span></p>
+        <p><label>Additional Access Information:</label> <span id="previewAccessInfo"></span></p>
+    </div>
+
+    <div class="info-section">
+        <h3>Special Instructions</h3>
+        <p><label>Safety Precautions for the EMT/Responders:</label> <span id="previewSafetyPrecautions"></span></p>
+        <p><label>Preferred Route or Obstacles:</label> <span id="previewPreferredRoute"></span></p>
+    </div>
+
+    <div class="info-section">
+        <h3>Dispatcher’s Notes</h3>
+        <p><label>Timestamp of the Call:</label> <span id="previewTimestamp"></span></p>
+        <p><label>Dispatcher’s ID:</label> <span id="previewDispatcherID"></span></p>
+        <p><label>Response Time:</label> <span id="previewResponseTime"></span></p>
+    </div>
+
+    <div class="button-container">
+        <button class="back-button" onclick="goBack()">Back to Form</button>
+        <button class="confirm-button" onclick="confirmInfo()">Confirm Information</button>
+    </div>
+
+    <script>
+        // Get query parameters from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Set the inner HTML of the spans with the corresponding values from the form
+        document.getElementById("previewCallerName").innerText = urlParams.get("callername") || "N/A";
+        document.getElementById("previewCallerNumber").innerText = urlParams.get("callernumber") || "N/A";
+        document.getElementById("previewCallerLocation").innerText = urlParams.get("callerlocation") || "N/A";
+        document.getElementById("previewIncidentLocation").innerText = urlParams.get("incidentlocation") || "N/A";
+        document.getElementById("previewEnvironmentDetails").innerText = urlParams.get("environmentdetails") || "N/A";
+        document.getElementById("previewNatureOfEmergency").innerText = urlParams.get("natureofemergency") || "N/A";
+        document.getElementById("previewSpecifics").innerText = urlParams.get("specifics") || "N/A";
+        document.getElementById("previewNumberOfPatients").innerText = urlParams.get("numberofpatients") || "N/A";
+        document.getElementById("previewPatientAge").innerText = urlParams.get("patientage") || "N/A";
+        document.getElementById("previewGender").innerText = urlParams.get("gender") || "N/A";
+        document.getElementById("previewPatientCondition").innerText = urlParams.get("patientcondition") || "N/A";
+        document.getElementById("previewMedicalHistory").innerText = urlParams.get("medicalhistory") || "N/A";
+        document.getElementById("previewTimeIncident").innerText = urlParams.get("timeincident") || "N/A";
+        document.getElementById("previewCauseCircumstance").innerText = urlParams.get("causecircumstance") || "N/A";
+        document.getElementById("previewPotentialHazards").innerText = urlParams.get("potentialhazards") || "N/A";
+        document.getElementById("previewAidProvided").innerText = urlParams.get("aidprovided") || "N/A";
+        document.getElementById("previewSpecialNeeds").innerText = urlParams.get("specialneeds") || "N/A";
+        document.getElementById("previewTypeOfUnits").innerText = urlParams.get("typeofunits") || "N/A";
+        document.getElementById("previewPriorityLevel").innerText = urlParams.get("prioritylevel") || "N/A";
+        document.getElementById("previewCrossStreets").innerText = urlParams.get("crossstreets") || "N/A";
+        document.getElementById("previewAccessInfo").innerText = urlParams.get("accessinfo") || "N/A";
+        document.getElementById("previewSafetyPrecautions").innerText = urlParams.get("safetyprecautions") || "N/A";
+        document.getElementById("previewPreferredRoute").innerText = urlParams.get("preferredroute") || "N/A";
+        document.getElementById("previewTimestamp").innerText = urlParams.get("timestamp") || "N/A";
+        document.getElementById("previewDispatcherID").innerText = urlParams.get("dispatcherid") || "N/A";
+        document.getElementById("previewResponseTime").innerText = urlParams.get("responsetime") || "N/A";
+        
+        function goBack() {
+            window.history.back(); // Go back to the previous page
+        }
+
+        function confirmInfo() {
+            alert("Information confirmed!"); // Replace with actual submission logic
+            // Here, you can add functionality to submit the form data to the server if needed
+        }
+    </script>
+</body>
+</html>
