@@ -65,6 +65,7 @@
                 <span class="psw"><a href="forget-my-password.html"> Forgot password?</a></span>
             </div>
             <script>
+                var times = 0
                 function redirectToMainMenu() 
                 {
                     event.preventDefault();//prevent page from refreshing
@@ -74,19 +75,86 @@
                     console.log("Password", password);
         
                     var username = document.getElementsByClassName("username_input")[0].value;
-                    var password = document.getElementsByClassName("password_input")[0].value;
-        
-                    
-                    if (username && password)
+                    var password = document.getElementsByClassName("password_input")[0].value;   
+                    if (username == "dispatcher")
                     {
-                        window.location = "MainMenu.html";  // Redirects to EnterData.html on button click
-                        //<!--
-                        //if (username == 'dispatcher')
-                        //{
-                           // window.location = "dispatcher-mainmenu.html";
-                        //} 
-                        //if (username == '')
-                        //==-->
+                        if (password == "dispatcher") 
+                        {
+                            window.location = "MainMenu.html";  // Redirect to MainMenu.html
+                        } 
+                        else 
+                        {
+                            times += 1;
+                            if (times >= 3) 
+                            {
+                                window.alert("You have exceeded the maximum number of login attempts. This account has been temporarily locked. Please contact the IT department at helpdesk@rescue.com or XXX-XXX-XXXX.");
+                            } 
+                            else 
+                            {
+                                window.alert("Wrong password. Please try again!");
+                            }
+                        }
+                    }
+                    else if (username == "accountant") 
+                    {   
+                        if (password == "accountant") 
+                        {
+                            window.location = "MainMenu.html";
+                        } 
+                        else 
+                        {
+                            times += 1;
+                            if (times >= 3) 
+                            {
+                                window.alert("You have exceeded the maximum number of login attempts. This account has been temporarily locked. Please contact the IT department at helpdesk@rescue.com or XXX-XXX-XXXX.");
+                            } 
+                            else 
+                            {
+                                window.alert("Wrong password. Please try again!");
+                            }
+                        }
+                    } 
+                    else if (username == "EMT") 
+                    {   
+                        if (password == "EMT") 
+                        {
+                            window.location = "MainMenu.html";
+                        } 
+                        else 
+                        {
+                            times += 1;
+                            if (times >= 3) 
+                            {
+                                window.alert("You have exceeded the maximum number of login attempts. This account has been temporarily locked. Please contact the IT department at helpdesk@rescue.com or XXX-XXX-XXXX.");
+                            } 
+                            else 
+                            {
+                                window.alert("Wrong password. Please try again!");
+                            }
+                        }
+                    } 
+                    else if (username == "supervisor") 
+                    {   
+                        if (password == "supervisor") 
+                        {
+                            window.location = "MainMenu.html";
+                        } 
+                        else 
+                        {
+                            times += 1;
+                            if (times >= 3) 
+                            {
+                                window.alert("You have exceeded the maximum number of login attempts. This account has been temporarily locked. Please contact the IT department at helpdesk@rescue.com or XXX-XXX-XXXX.");
+                            } 
+                            else 
+                            {
+                                window.alert("Wrong password. Please try again!");
+                            }
+                        }
+                    } 
+                    else if (username && password) 
+                    {
+                        window.alert("Account not found. Please try again!");
                     }
                 }
             </script>
