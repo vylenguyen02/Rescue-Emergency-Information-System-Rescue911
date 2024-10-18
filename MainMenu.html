@@ -47,12 +47,12 @@
     <table>
         <tr> 
             <td><button type="button" onclick="redirectToEnterData()">Log New Emergency Case</button></td>
-            <td><button type="button" onclick="redirectToEnterData()">View All Emergency</button></td>
+            <td><button type="button" onclick="redirectToEmergency()">View All Emergency</button></td>
         <tr>
-            <td><button type="button" onclick="redirectToEnterData()">Assign Response Team</button></td>
-            <td><button type="button" onclick="redirectToEnterData()">View EMT Availability</button></td>
+            <td><button type="button" onclick="">View EMT Availability</button></td>
+            <td><button type="button" onclick="redirectToCommunicationChannel()">Commucation Channel</button></td>
         </tr>
-            <td><button type="button" onclick="redirectToEnterData()">Log Shift</button></td>
+            <td><button type="button" onclick="redirectToLogShift()">My Shift</button></td>
             <td><button type="button" onclick="redirectToLogIn()">Log Out</button></td>
         </tr>
     </table>
@@ -62,6 +62,18 @@
         }
         function redirectToEnterData() {
             window.location.href = "EnterDataPage.html";  // Redirects to EnterDataPage.html on button click
+        }
+        function redirectToEmergency()
+        {
+            window.location.href = "ViewAllEmergency.html";
+        }
+        function redirectToCommunicationChannel()
+        {
+            window.location.href = "CommunicationChannel.html";
+        }
+        function redirectToLogShift()
+        {
+            window.location.href = "Shift.html"
         }
     </script>
 </body>
