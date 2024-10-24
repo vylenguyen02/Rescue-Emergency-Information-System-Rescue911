@@ -66,9 +66,52 @@
         header table {
             margin-top: 0px; /* Space above the table */
         }
+        label {
+            color: #333;
+            margin-right: 10px;
+            white-space: nowrap;
+        }
+        input[type="text"], input[type="date"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+        .form-section {
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            width: 80%; /* Set width to 80% */
+            margin: 20px auto; /* Center the form section */
+        }
+        .form-section > div {
+            margin-bottom: 15px; /* Space between form elements */
+        }
+        .submit-button, .clear-button {
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+        .submit-button:hover, .clear-button:hover {
+            background-color: black;
+        }
+        .button-container {
+            display: flex; /* Create a flex container */
+            justify-content: flex-start; /* Align buttons to the left */
+        }
     </style>
 </head>
-<body>
+<body style="background-color: rgb(130, 130, 130);">
     <header style="background-color: black;">
         <img src="heading1.jpg" alt="Emergency Response" width="50%">
         <div class="navbar" style="background-color: red;">
@@ -84,5 +127,9 @@
             <td><button type="button" onclick="redirectToEnterData()">Log New Shift</button></td>
             <td><button type="button" onclick="redirectToEmergency()">View Past Shift</button></td>
         </tr>
+    </table>
+    <form class="form-section">
+       
+    </form>
 </body>
 </html>
