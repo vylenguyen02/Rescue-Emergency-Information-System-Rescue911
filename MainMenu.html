@@ -26,7 +26,6 @@
             width: 100%; /* Full width table */
             margin: 20px auto; /* Centers the table horizontally */
         }
-        
 
         /* Table cell styling */
         td {
@@ -36,8 +35,7 @@
         header table {
             margin-top: 0px; /* Space above the table */
         }
-        .open-button 
-        {
+        .open-button {
             background-color: #555;
             color: white;
             padding: 16px 20px;
@@ -50,9 +48,8 @@
             width: 280px;
         }
 
-            /* The popup chat - hidden by default */
-        .chat-popup 
-        {
+        /* The popup chat - hidden by default */
+        .chat-popup {
             display: none;
             position: fixed;
             bottom: 0;
@@ -61,56 +58,84 @@
             z-index: 9;
         }
 
-            /* Add styles to the form container */
-        .form-container 
-        {
+        /* Add styles to the form container */
+        .form-container {
             max-width: 300px;
             padding: 10px;
             background-color: white;
         }
 
-            /* Full-width textarea */
-        .form-container textarea 
-        {
+        /* Full-width textarea */
+        .form-container textarea {
             width: 100%;
             padding: 15px;
             margin: 5px 0 22px 0;
             border: none;
             background: #f1f1f1;
             resize: none;
-            min-height: 200px;
+            min-height: 100px;
         }
 
-            /* When the textarea gets focus, do something */
-        .form-container textarea:focus
-        {
+        /* Chat messages display */
+        .chat-messages {
+            max-height: 200px;
+            overflow-y: scroll;
+            background-color: #f1f1f1;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Individual message styling */
+        .message {
+            background-color: #04AA6D;
+            color: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        /* Timestamp styling */
+        .timestamp {
+            font-size: 12px;
+            color: #ddd;
+            text-align: right;
+        }
+
+        /* When the textarea gets focus, do something */
+        .form-container textarea:focus {
             background-color: #ddd;
             outline: none;
         }
 
-            /* Set a style for the submit/send button */
-        .form-container .btn 
-        {
+        /* Set a style for the submit/send button */
+        .form-container .btn {
             background-color: #04AA6D;
             color: white;
             padding: 16px 20px;
             border: none;
             cursor: pointer;
             width: 100%;
-            margin-bottom:10px;
+            margin-bottom: 10px;
             opacity: 0.8;
-            }
+        }
 
-            /* Add a red background color to the cancel button */
-        .form-container .cancel 
-        {
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
             background-color: red;
         }
 
-            /* Add some hover effects to buttons */
-        .form-container .btn:hover, .open-button:hover 
-        {
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover, .open-button:hover {
             opacity: 1;
+        }
+
+        /* Dropdown styling */
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f1f1f1;
+            border: none;
         }
     </style>
     <title>Main Menu</title>
@@ -136,15 +161,25 @@
     <button class="open-button" onclick="openForm()">Chat</button>
 
     <div class="chat-popup" id="myForm">
-    <form action="/action_page.php" class="form-container">
-        <h1>Chat</h1>
+        <div class="form-container">
+            <h1>Chat</h1>
 
-        <label for="msg"><b>Message</b></label>
-        <textarea placeholder="Type message.." name="msg" required></textarea>
+            <div class="chat-messages" id="chatMessages"></div>
 
-        <button type="submit" class="btn" onclick="sendMessage()">Send</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-    </form>
+            <label for="recipient"><b>To</b></label>
+            <select id="recipient">
+                <option value="Accountant">Accountant</option>
+                <option value="EMT">EMT</option>
+                <option value="Supervisor">Supervisor</option>
+                <option value="Dispatcher">Dispatcher</option>
+            </select>
+
+            <label for="msg"><b>Message</b></label>
+            <textarea id="msg" placeholder="Type message.." name="msg" required></textarea>
+
+            <button type="button" class="btn" onclick="sendMessage()">Send</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </div>
     </div>
 
     <script>
@@ -154,30 +189,42 @@
         function redirectToEnterData() {
             window.location.href = "EnterDataPage.html";  // Redirects to EnterDataPage.html on button click
         }
-        function redirectToEmergency()
-        {
+        function redirectToEmergency() {
             window.location.href = "ViewAllEmergency.html";
         }
-        function redirectToCommunicationChannel()
-        {
+        function redirectToCommunicationChannel() {
             window.location.href = "CommunicationChannel.html";
         }
-        function redirectToLogShift()
-        {
-            window.location.href = "Shift.html"
+        function redirectToLogShift() {
+            window.location.href = "Shift.html";
         }
-        function openForm() 
-        {
+        function openForm() {
             document.getElementById("myForm").style.display = "block";
         }
 
-        function closeForm() 
-        {
+        function closeForm() {
             document.getElementById("myForm").style.display = "none";
         }
-        function sendMessage()
-        {
-            event.preventDefault();//prevent page from refreshing
+
+        function sendMessage() {
+            event.preventDefault();  // Prevent page from refreshing
+            const messageBox = document.getElementById("msg");
+            const message = messageBox.value;
+            const recipient = document.getElementById("recipient").value;
+
+            if (message.trim() !== "") {
+                const chatMessages = document.getElementById("chatMessages");
+                const timestamp = new Date().toLocaleTimeString();
+                
+                const newMessage = document.createElement("div");
+                newMessage.classList.add("message");
+                newMessage.innerHTML = `<p><strong>To: ${recipient}</strong></p><p>${message}</p><div class="timestamp">${timestamp}</div>`;
+
+                chatMessages.appendChild(newMessage);
+                chatMessages.scrollTop = chatMessages.scrollHeight;  // Auto-scroll to the latest message
+                
+                messageBox.value = "";  // Clear the textarea after sending the message
+            }
         }
     </script>
 </body>
