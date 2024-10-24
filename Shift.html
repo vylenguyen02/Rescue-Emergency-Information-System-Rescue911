@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log Shift</title>
+    <title>Emergency Information Form</title>
     <style>
+        /* Basic button styling */
         body {
             background-color: #f9f9f9;
             font-family: Arial, sans-serif;
-            margin: 20px;
         }
         .navbar {
             width: 100%;
@@ -35,83 +35,66 @@
         .active {
             background-color: #ff0000;
         }
-        button {
-            background-color: #343736; /* Button background color */
-            color: white; /* Button text color */
-            padding: 14px 20px; /* Button padding */
-            margin: 8px 0; /* Margin for spacing */
-            border: none; /* Remove borders */
-            cursor: pointer; /* Pointer cursor on hover */
-            width: 100%; /* Full width inside the table cell */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
 
-        /* Button hover effect */
-        button:hover {
-            background-color: #555555; /* Change the background color on hover */
-            color: #ffffff; /* Optional: Change the text color on hover */
-        }
-
-        /* Table styling */
-        table {
-            width: 100%; /* Full width table */
-            margin: 20px auto; /* Centers the table horizontally */
-        }
-        
-
-        /* Table cell styling */
-        td {
-            text-align: center; /* Centers content inside the cells */
-            padding: 10px; /* Adds padding to cells */
-        }
-        header table {
-            margin-top: 0px; /* Space above the table */
-        }
-        label {
+        h1, h2 {
+            text-align: center;
             color: #333;
-            margin-right: 10px;
-            white-space: nowrap;
         }
-        input[type="text"], input[type="date"], input[type="date"], select, textarea {
+
+        label {
+            font-size: 16px;
+        }
+
+        input, select {
+            display: block;
             width: 100%;
             padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
             border-radius: 4px;
         }
-        textarea {
-            height: 100px;
-            resize: none;
-        }
-        .form-section {
-            display: flex;
-            flex-direction: column; /* Stack elements vertically */
-            width: 80%; /* Set width to 80% */
-            margin: 20px auto; /* Center the form section */
-        }
-        .form-section > div {
-            margin-bottom: 15px; /* Space between form elements */
-        }
-        .submit-button, .clear-button {
-            padding: 10px 20px;
-            background-color: red;
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .past-shifts {
             margin-top: 20px;
-            margin-right: 10px;
         }
-        .submit-button:hover, .clear-button:hover {
-            background-color: black;
+
+        #shiftList {
+            list-style-type: none;
+            padding: 0;
         }
-        .button-container {
-            display: flex; /* Create a flex container */
-            justify-content: flex-start; /* Align buttons to the left */
+
+        #shiftList li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 5px;
+            border-left: 4px solid #28a745;
         }
     </style>
 </head>
-<body style="background-color: rgb(130, 130, 130);">
+<body>
     <header style="background-color: black;">
         <img src="heading1.jpg" alt="Emergency Response" width="50%">
         <div class="navbar" style="background-color: red;">
@@ -122,14 +105,83 @@
             <a class="active" href="MainMenu.html"><i class="fa fa-fw fa-user"></i> Account Center</a>
         </div>
     </header>
-    <table>
-        <tr> 
-            <td><button type="button" onclick="redirectToEnterData()">Log New Shift</button></td>
-            <td><button type="button" onclick="redirectToEmergency()">View Past Shift</button></td>
-        </tr>
-    </table>
-    <form class="form-section">
-       
-    </form>
+
+    <div class="container">
+        <h1>Shift Log</h1>
+
+        <div class="shift-logger">
+            <h2>Log Your Shift</h2>
+            <form id="shiftForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="ID">ID:</label>
+                <input type="text" id="ID" name="ID" required>
+                <label for="department">Department:</label>
+                <select id="department" name="department" required>
+                    <option value="">--Select Department--</option>
+                    <option value="Accountant">Accountant</option>
+                    <option value="EMT Dispatcher">EMT Dispatcher</option>
+                    <option value="Supervisor">Supervisor</option>
+                </select>
+
+                <label for="shiftIn">Shift In Time:</label>
+                <input type="datetime-local" id="shiftIn" name="shiftIn" required>
+
+                <label for="shiftOut">Shift Out Time:</label>
+                <input type="datetime-local" id="shiftOut" name="shiftOut" required>
+
+                <button type="submit">Log Shift</button>
+            </form>
+        </div>
+
+        <div class="past-shifts">
+            <h2>Past Shifts</h2>
+            <ul id="shiftList">
+                <!-- Past shifts will appear here -->
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        let shifts = [];
+
+        // Handle form submission
+        document.getElementById('shiftForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get name, department, shift in, and shift out times
+            const ID = document.getElementById('ID').value;
+            const department = document.getElementById('department').value;
+            const shiftIn = document.getElementById('shiftIn').value;
+            const shiftOut = document.getElementById('shiftOut').value;
+
+            // Validate the times
+            if (new Date(shiftIn) >= new Date(shiftOut)) {
+                alert("Shift out time must be after shift in time.");
+                return;
+            }
+
+            // Add shift to the array
+            shifts.push({ ID, department, shiftIn, shiftOut });
+
+            // Clear form
+            document.getElementById('shiftForm').reset();
+
+            // Update the past shift log
+            updateShiftLog();
+        });
+
+        // Function to update the shift list on the page
+        function updateShiftLog() {
+            const shiftList = document.getElementById('shiftList');
+            shiftList.innerHTML = ''; // Clear current list
+
+            shifts.forEach((shift, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `Shift ${index + 1}: ${shift.ID} (${shift.department}) - In: ${new Date(shift.shiftIn).toLocaleString()}, Out: ${new Date(shift.shiftOut).toLocaleString()}`;
+                shiftList.appendChild(listItem);
+            });
+        }
+    </script>
 </body>
 </html>
