@@ -161,18 +161,14 @@
     <button class="open-button" onclick="openForm()">Chat</button>
 
     <div class="chat-popup" id="myForm">
-        <div class="form-container">
+         <div class="form-container">
             <h1>Chat</h1>
 
             <div class="chat-messages" id="chatMessages"></div>
-
-            <label for="recipient"><b>To</b></label>
-            <select id="recipient">
-                <option value="Accountant">Accountant</option>
-                <option value="EMT">EMT</option>
-                <option value="Supervisor">Supervisor</option>
-                <option value="Dispatcher">Dispatcher</option>
-            </select>
+            <label for="from"><b>From:</b></label>
+            <input type="text" class="sender" id="sender" required></textarea><p></p>
+            <label for="from"><b>To:</b></label>
+            <input type="text" class="recipient" id="recipient" required></textarea><p></p>
 
             <label for="msg"><b>Message</b></label>
             <textarea id="msg" placeholder="Type message.." name="msg" required></textarea>
