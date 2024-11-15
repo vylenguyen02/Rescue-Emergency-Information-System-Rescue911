@@ -14,7 +14,15 @@
             cursor: pointer; /* Pointer cursor on hover */
             width: 100%; /* Full width inside the table cell */
         }
-
+        button-logout {
+            background-color: #343736; /* Button background color */
+            color: white; /* Button text color */
+            padding: 14px 20px; /* Button padding */
+            margin: 8px 0; /* Margin for spacing */
+            border: none; /* Remove borders */
+            cursor: pointer; /* Pointer cursor on hover */
+            width: 75%; /* Full width inside the table cell */
+        }
         /* Button hover effect */
         button:hover {
             background-color: #555555; /* Change the background color on hover */
@@ -151,14 +159,11 @@
             <td><button type="button" onclick="redirectToEnterData()">Log New Emergency Case</button></td>
             <td><button type="button" onclick="redirectToEmergency()">View All Emergency</button></td>
         <tr>
-            <td><button type="button" onclick="">View EMT Availability</button></td>
-            <td><button type="button" onclick="redirectToReport()">Report</button></td>
-        </tr>
+            <td><button type="button" onclick="redirectToViewEMT()">View EMT Availability</button></td>
             <td><button type="button" onclick="redirectToLogShift()">My Shift</button></td>
-            <td><button type="button" onclick="redirectToLogIn()">Log Out</button></td>
-        </tr>
-    </table>
-    <button class="open-button" onclick="openForm()">Chat</button>
+        </tr> 
+    </table><button class="button-logout" onclick="redirectToLogIn()">Log Out</button></td>
+    <button type="button" class="open-button" onclick="openForm()">Chat</button>
 
     <div class="chat-popup" id="myForm">
          <div class="form-container">
@@ -188,11 +193,12 @@
         function redirectToEmergency() {
             window.location.href = "ViewAllEmergency.html";
         }
-        function redirectToReport() {
-            window.location.href = "Report.html";
-        }
         function redirectToLogShift() {
             window.location.href = "Shift.html";
+        }
+        function redirectToViewEMT()
+        {
+            window.location.href = "ViewEMT.html"
         }
         function openForm() {
             document.getElementById("myForm").style.display = "block";

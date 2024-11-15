@@ -1,2 +1,428 @@
 <!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Information Form</title>
+    <style>
+        /* Basic button styling */
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #555;
+            overflow: auto;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .navbar a {
+            padding: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            text-align: center;
+            width: 15%;
+            flex-grow: 1;
+        }
+        .navbar a:hover {
+            background-color: #000;
+        }
+        .active {
+            background-color: #ff0000;
+        }
+        label {
+            color: #333;
+            margin-right: 10px;
+            white-space: nowrap;
+        }
+        input[type="text"], input[type="number"], select, textarea {
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+        .form-section {
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            width: 80%; /* Set width to 80% */
+            margin: 20px auto; /* Center the form section */
+        }
+        .form-section > div {
+            margin-bottom: 15px; /* Space between form elements */
+        }
+        
+        .button-container {
+            display: flex; /* Create a flex container */
+            justify-content: flex-start; /* Align buttons to the left */
+        }
+        .container {
+            max-width: 90%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Add styles for the search bar and dropdown */
+        .search-container {
+            display: flex; /* Align items horizontally */
+            align-items: center; /* Align items vertically in the center */
+            gap: 10px; /* Add space between the elements */
+            width: 100%; /* Ensure the container takes up the full width */
+        }
+
+        input[type="text"] {
+            flex: 2; /* Take up two-thirds of the space */
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        select {
+            flex: 1; /* Take up one-third of the space */
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .submit-button {
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+        .submit-button:hover{
+            background-color: black;
+        }
+        .button-container {
+            display: flex; /* Create a flex container */
+            justify-content: flex-start; /* Align buttons to the left */
+        }
+        .status {
+            color: green; /* Set the text color to green */
+            font-weight: bold; /* Make the text bold */
+            margin-left: 10px; /* Add space between the case ID and the status */
+        }
+        /* Full-screen popup form */
+        .form-popup {
+            display: none; /* Start as hidden */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the form */
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+            z-index: 9999;
+            overflow: auto; /* Add scroll if needed */
+            justify-content: center; /* Horizontally center */
+            align-items: center; /* Vertically center */
+        }
+        .form-container input[type=text]{
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        /* When the inputs get focus, do something */
+        .form-container input[type=text]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+        /* Style the content of the full-screen form */
+        .form-container {
+            padding: 20px;
+            width: 70%; /* Adjust as needed for form width */
+            max-width: 800px; /* Limit the width of the form */
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-container .btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom:10px;
+            opacity: 0.8;
+        }
+
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <header style="background-color: black;">
+        <img src="heading1.jpg" alt="Emergency Response" width="50%">
+        <div class="navbar" style="background-color: red;">
+            <a class="active" href="EnterDataPage.html"><i class="fa fa-fw fa-home"></i> Log New Emergency Case</a> 
+            <a class="active" href="ViewAllEmergency.html"><i class="fa fa-fw fa-search"></i> View All Emergency Cases</a> 
+            <a class="active" href="ViewEMT.html"><i class="fa fa-fw fa-user"></i> View EMT Availability</a>
+            <a class="active" href="Shift.html"><i class="fa fa-fw fa-user"></i> My Shift</a>
+            <a class="active" href="MainMenu.html"><i class="fa fa-fw fa-user"></i> Account Center</a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="search-container">
+            <input type="text" placeholder="Search...">
+            <label for="searchby">Search By:</label>
+            <select name="searchby" required>
+                <option value="" disabled selected>Most Recent</option>
+                <option value="sort-urgency">Sort by Urgency (Urgent → Priority → Routine)</option>
+                <option value="sort-priority">Sort by Priority (Priority → Urgent → Routine)</option>
+                <option value="sort-routine">Sort by Routine (Routine → Priority → Urgent)</option>
+                <option value="oldest-first">Oldest First</option>
+                <option value="by-status">Open</option>
+                <option value="by-status">In Progress</option>
+                <option value="by-status">Done</option>
+            </select>
+        </div>
+        <p><p></p></p>
+        <div class="container">
+            <h3>Case ID #3<span class="status">Open</span></h3>
+            <b>Timestampt: 11:17 AM 11/14/2024</b>
+            <p><b>EMT Responsible:</b> Not Assigned</p>
+            <p><b>Team Leader:</b> Not Assigned</p>
+            <p><b>Dispatcher ID:</b>  D76532</p>
+            <p><b>Response Time: </b> Not Assigned</p>
+            <p><b>Priority:</b> Priority (not urgent but requires prompt response)</p>
+            <p><b>Time of the Incident:</b>  11:15 AM</p>
+            <p><b>Incident Location:</b> Intersection of Oak Street & Maple Avenue, near the city park.</p>
+            
+            <p><b>Number of Patients:</b> 4</p>
+            <p><b>Patient’s Age and Gender:</b> Patient 1 Approx. 25-year-old male, Patient 2 Approx. 30-year-old female, Patient 3 Approx. 35-year-old male, Patient 4 Approx. 40-year-old female.</p>
+            <p><b>Patient’s Condition:</b> Patients 1, 2, and 3 conscious, in visible pain. Patient 4 drowsy and confused but responsive.</p>
+            <p><b>Any Known Medical History:</b> No significant history reported.
+
+            </p>
+            <p><b>Environment Details:</b> N/A</p>
+            <ul>
+                <li>Busy intersection with traffic light.</li>
+                <li>Surrounded by onlookers, potential crowd control needed.</li>
+                <li>Access to the area clear but Maple Avenue blocked.</li>
+            </ul>
+            <p><b>Bystander Involvement:</b></p>
+            <ul>
+                <li>One bystander performing CPR on Patient 4.</li>
+                <li>A bystander assisting Patient 1, keeping them calm.</li>
+            </ul>
+            <p><b>Potential Hazards or Safety Notes:</b></p>
+            <ul>
+                <li>Heavy traffic, requires police assistance for control.</li>
+                <li>No significant physical hazards reported.</li>
+            </ul>
+            <p><b>Preliminary Aid Provided:</b></p>
+            <ul>
+                <li>Patient 1 received verbal reassurance.</li>
+                <li>Patient 4 receiving CPR from trained bystander.</li>
+            </ul>
+            <p><b>Equipment Required:</b></p>
+            <ul>
+                <li>Defibrillator for potential cardiac arrest.</li>
+                <li>Extrication tools for patient removal.</li>
+            </ul>
+            <p><b>Communication Details:</b> Clear cell signal, no language barriers..</p>
+            <p><b>Estimated Arrival Time:</b> EMT Squad #5 estimated to arrive at 11:24 AM.</p>
+            <p><b>Safety Precautions for EMT/Responders:</b></p>
+            <ul>
+                <li>Be cautious of ongoing traffic and potential interference from bystanders.</li>
+                <li>Maintain vigilance for sudden traffic flow.</li>
+            </ul>
+            <p><b>Additional Access Information:</b></p>
+            <ul>
+                <li>Police notified for traffic management.</li>
+                <li>Ambulance parking available in nearby lot.</li>
+            </ul>
+            <p><b>Preferred Route or Obstacles:</b> Avoid Maple Avenue due to blockage; use 3rd Avenue instead.</p>
+            <div class="button-container">
+                <button type="submit" class="submit-button" onclick="assignEMT()">Assign EMT</button>
+            </div>
+            <!-- Add a close button inside the form to hide it -->
+            <div class="form-popup" id="formCase2">
+                <div class="form-container">
+                    <h1>Report</h1>
+                    <p>Emergency Case ID #2 occurred at 5:20 PM on November 12, 2024, at the busy intersection of Main Street and West 3rd Avenue, near City Hall. EMT Squad #3, led by Team Leader Srinijia Burra, was dispatched promptly at 5:24 PM after receiving the report from Dispatcher ID D19876. The scene involved two patients: a 45-year-old male experiencing severe chest pain, conscious but in distress, and a 30-year-old female who was found unconscious with suspected internal injuries. The male patient, known to have a history of hypertension and diabetes, was given aspirin by a bystander, while CPR was administered to the female patient by a trained onlooker prior to EMT arrival. The environment posed challenges due to rush-hour traffic and nearby road construction, necessitating police assistance for crowd and traffic control. Initial assessments indicated the need for a defibrillator for potential cardiac support and advanced life support equipment for trauma management.</p>
+                    <button type="button" class="btn cancel" onclick="closeForm2()">Close</button>
+                    <!-- Content of the form -->
+                </div>
+            </div>
+            <div class="form-popup" id="editForm">
+                <div class="form-container">
+                    <h1>Edit Report</h1>
+                        <label for="Form"><b>Report:</b></label>
+                        <input type="text" placeholder="Write a report" name="report" required>
+                        <button type="submit" class="btn" onclick="message()">Submit</button>
+                        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </div>
+            </div>
+        </div>
+        <p><p></p></p>
+        <div class="container">
+            <h3>Case ID #2<span class="status">In Progress</span></h3>
+            <b>Timestamp: 3:47 PM 11/13/2024</b>
+            <p><b>EMT Responsible:</b> 1</p>
+            <p><b>Team Leader:</b> Vy Nguyen</p>
+            <p><b>Dispatcher ID:</b>  D20245</p>
+            <p><b>Response Time: </b> Emergency units dispatched at 3:49 PM</p>
+            <p><b>Priority:</b> Urgent (life-threatening)</p>
+            <p><b>Time of the Incident:</b>  3:45 PM</p>
+            <p><b>Incident Location:</b> Northwestern Avenue near Purdue Memorial Union, close to Stewart Center.</p>
+            
+            <p><b>Number of Patients:</b> 1</p>
+            <p><b>Patient’s Age and Gender:</b> Approx. 20-year-old male.</p>
+            <p><b>Patient’s Condition:</b> Unconscious, shallow breathing, and visible head trauma.</p>
+            <p><b>Any Known Medical History:</b> N/A</p>
+            <p><b>Environment Details:</b> Incident occurred on a busy roadway near the main campus, with high foot traffic and limited access for large vehicles.</p>
+            <p><b>Bystander Involvement:</b> Bystanders are keeping the victim still, and a trained first responder on-site is monitoring vitals.</p>
+            <p><b>Potential Hazards or Safety Notes:</b></p>
+            <ul>
+                <li>Traffic congestion around the scene</li>
+                <li>High number of onlookers creating potential obstruction.</li>
+            </ul>
+            <p><b>Preliminary Aid Provided:</b> N/A</p>
+            <p><b>Equipment Required:</b> Neck brace and spinal board for safe transport of the victim.</p>
+            <p><b>Communication Details:</b> Responders may face restricted access due to construction on nearby streets.</p>
+            <p><b>Estimated Arrival Time:</b> EMT Squad #3 estimated to arrive at the scene by 5:28 PM.</p>
+            <p><b>Safety Precautions for EMT/Responders:</b></p>
+            <ul>
+                <li>High traffic area.</li>
+                <li>Ensure scene safety and manage crowd control.</li>
+            </ul>
+            <p><b>Additional Access Information:</b> Responders may face restricted access due to construction on nearby streets.</p>
+            <p><b>Preferred Route or Obstacles:</b> Use Grant Street to approach from the east to avoid ongoing construction on University Street.</p>
+            <div class="button-container">
+                <button type="submit" class="submit-button" onclick="editForm()">Write Report</button>
+            </div>
+        </div>
+        <p><p></p></p>
+        <div class="container">
+            <h3>Case ID #1<span class="status">Done</span></h3>
+            <b>Timestampt: 5:22 PM 11/12/2024</b>
+            <p><b>EMT Responsible:</b> 3</p>
+            <p><b>Team Leader:</b> Srinija Burra</p>
+            <p><b>Dispatcher ID:</b>  D19876</p>
+            <p><b>Response Time: </b> Emergency units dispatched at 5:24 PM</p>
+            <p><b>Priority:</b> Priority (not urgent but requires prompt response)</p>
+            <p><b>Time of the Incident:</b>  5:20 PM</p>
+            <p><b>Incident Location:</b> Intersection of Oak Street & Maple Avenue, near the city park.</p>
+            
+            <p><b>Number of Patients:</b> 4</p>
+            <p><b>Patient’s Age and Gender:</b>  Patient 1 Approx. 25-year-old male, Patient 2 Approx. 30-year-old female, Patient 3 Approx. 35-year-old male, Patient 4 Approx. 40-year-old female.</p>
+            <p><b>Patient’s Condition:</b>  Patients 1, 2, and 3 conscious, in visible pain. Patient 4 drowsy and confused but responsive.</p>
+            <p><b>Any Known Medical History:</b> No significant history reported.</p>
+            <p><b>Environment Details:</b> 
+            <ul>
+                <li>Busy intersection with traffic light.</li>
+                <li>Surrounded by onlookers, potential crowd control needed.</li>
+                <li>Access to the area clear but Maple Avenue blocked.</li>
+            </ul></p>
+            <p><b>Bystander Involvement:</b></p>
+            <ul>
+                <li>One bystander performing CPR on Patient 4.</li>
+                <li>A bystander assisting Patient 1, keeping them calm.</li>
+            </ul>
+            <p><b>Potential Hazards or Safety Notes:</b></p>
+            <ul>
+                <li>Heavy traffic, requires police assistance for control.</li>
+                <li>No significant physical hazards reported.</li>
+            </ul>
+            <p><b>Preliminary Aid Provided:</b></p>
+            <ul>
+                <li>Patient 1 received verbal reassurance.</li>
+                <li>Patient 4 receiving CPR from trained bystander.</li>
+            </ul>
+            <p><b>Equipment Required:</b></p>
+            <ul>
+                <li>Defibrillator for potential cardiac arrest.</li>
+                <li>Extrication tools for patient removal.</li>
+            </ul>
+            <p><b>Communication Details:</b> Clear cell signal for updates, no language barriers reported.</p>
+            <p><b>Estimated Arrival Time:</b> EMT Squad #3 estimated to arrive at the scene by 11:24 PM.</p>
+            <p><b>Safety Precautions for EMT/Responders:</b></p>
+            <ul>
+                <li>Be cautious of ongoing traffic and potential interference from bystanders.</li>
+                <li>Maintain vigilance for sudden traffic flow.</li>
+            </ul>
+            <p><b>Additional Access Information:</b></p>
+            <ul>
+                <li>Police notified for traffic management.</li>
+                <li>Ambulance parking available in nearby lot.</li>
+            </ul>
+            <p><b>Preferred Route or Obstacles:</b> Avoid Maple Avenue due to blockage; use 3rd Avenue instead.</p>
+            
+            <div class="button-container">
+                <button type="submit" class="submit-button" onclick="openForm2()">View Report</button>
+                <button type="submit" class="submit-button" onclick="editForm()">Edit</button>
+            </div>
+            <!-- Add a close button inside the form to hide it -->
+            <div class="form-popup" id="formCase2">
+                <div class="form-container">
+                    <h1>Report</h1>
+                    <p>AA</p>
+                    <button type="button" class="btn cancel" onclick="closeForm2()">Close</button>
+                    <!-- Content of the form -->
+                </div>
+            </div>
+            <div class="form-popup" id="editForm">
+                <div class="form-container">
+                    <h1>Edit Report</h1>
+                        <label for="email"><b>Email</b></label>
+                        <input type="text" placeholder="Write a report" name="report" required>
+                        <button type="submit" class="btn" onclick="message()">Submit</button>
+                        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </div>
+            </div>
+        </div>
+        <p><p></p></p>
+        
+        <script>
+        function editForm()
+        {
+            document.getElementById("editForm").style.display = "flex";
+        }
+        function openForm2() {
+        document.getElementById("formCase2").style.display = "flex"; // Show form when button is clicked
+        }
+
+        function closeForm2() {
+            document.getElementById("formCase2").style.display = "none"; // Hide form when done
+        }
+        function closeForm() {
+            document.getElementById("editForm").style.display = "none";
+        }
+        function message()
+        {
+            window.alert("Save changes successfully.")
+        }
+        function assignEMT(){
+            window.location.href = "ViewEMT.html";
+        }
+        </script>
+        
+    </body>
+    </div>
+    
 </html>
