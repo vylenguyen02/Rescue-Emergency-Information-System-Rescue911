@@ -1,2 +1,334 @@
 <!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View EMT Availability</title>
+    <style>
+        /* Basic button styling */
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #555;
+            overflow: auto;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .navbar a {
+            padding: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            text-align: center;
+            width: 15%;
+            flex-grow: 1;
+        }
+        .navbar a:hover {
+            background-color: #000;
+        }
+        .active {
+            background-color: #ff0000;
+        }
+        
+        .form-section {
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            width: 80%; /* Set width to 80% */
+            margin: 20px auto; /* Center the form section */
+        }
+        .form-section > div {
+            margin-bottom: 15px; /* Space between form elements */
+        }
+        
+        .button-container {
+            display: flex; /* Create a flex container */
+            justify-content: flex-start; /* Align buttons to the left */
+        }
+        .container {
+            max-width: 90%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Add styles for the search bar and dropdown */
+        .submit-button {
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+        .submit-failedbutton {
+            padding: 10px 20px;
+            background-color: rgb(1, 0, 0);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+        .submit-button:hover{
+            background-color: black;
+        }
+        .button-container {
+            display: flex; /* Create a flex container */
+            justify-content: flex-start; /* Align buttons to the left */
+        }
+        .status {
+            color: green; /* Set the text color to green */
+            font-weight: bold; /* Make the text bold */
+            margin-left: 10px; /* Add space between the case ID and the status */
+        }
+        .busy {
+            color: red; /* Set the text color to green */
+            font-weight: bold; /* Make the text bold */
+            margin-left: 10px; /* Add space between the case ID and the status */
+        }
+    </style>
+</head>
+<body>
+    <header style="background-color: black;">
+        <img src="heading1.jpg" alt="Emergency Response" width="50%">
+        <div class="navbar" style="background-color: red;">
+            <a class="active" href="EnterDataPage.html"><i class="fa fa-fw fa-home"></i> Log New Emergency Case</a> 
+            <a class="active" href="ViewAllEmergency.html"><i class="fa fa-fw fa-search"></i> View All Emergency Cases</a> 
+            <a class="active" href="ViewEMT.html"><i class="fa fa-fw fa-user"></i> View EMT Availability</a>
+            <a class="active" href="Shift.html"><i class="fa fa-fw fa-user"></i> My Shift</a>
+            <a class="active" href="MainMenu.html"><i class="fa fa-fw fa-user"></i> Account Center</a>
+        </div>
+    </header>   
+    <p><p></p></p>
+        <div class="container">
+            <h2>Team Number #1 <span class="busy">Unavailable</span></h2>
+            <h3>West Lafayette Response Team #1</h3>
+            <p><b>Team Leader:</b> Vy Nguyen</p>
+            <p><b>Team ID:</b> EMT-1001</p>
+            <p><b>Location:</b> Station 4, 2101 N 3rd St, Lafayette</p>
+            <p><b>Team Size:</b> 5 Members</p>
+            <p><b>Members:</b>
+                <ul>
+                    <li><b>Team Leader:</b> Vy Nguyen (5 years of service)</li>
+                    <li><b>EMT Member:</b> Vinh Tran (3 years of service)</li>
+                    <li><b>EMT Member:</b> Billy Luu (6 years of service)</li>
+                    <li><b>EMT Member:</b> Linh Nghiem (4 years of service)</li>
+                    <li><b>EMT Member:</b> Kim Jong Ke (7 years of service)</li>
+                </ul>
+            </p>
+            <p><b>Certifications:</b>
+                <ul>
+                    <li>Advanced Cardiovascular Life Support (ACLS)</li>
+                    <li>Pediatric Advanced Life Support (PALS)</li>
+                    <li>Basic Life Support (BLS)</li>
+                    <li>Advanced Trauma Life Support (ATLS)</li>
+                </ul>
+            </p>
+            <p><b>Medical Equipment Onboard:</b>
+                <ul>
+                    <li>Defibrillator (AED)</li>
+                    <li>Trauma Kits</li>
+                    <li>Advanced Airway Kits</li>
+                    <li>Pediatric Care Kits</li>
+                </ul>
+            </p>
+            <p><b>Current Availability:</b> Available</p>
+            <p><b>Specializations:</b>
+                <ul>
+                    <li>Trauma Emergencies</li>
+                    <li>Cardiac Arrest</li>
+                    <li>Pediatric Care</li>
+                </ul>
+            </p>
+            <p><b>Performance Review:</b> Well-coordinated team with extensive experience in trauma and pediatric emergencies. Known for quick decision-making and efficient resource allocation.</p>
+
+            <div class="button-container">
+                <button type="submit" class="submit-failedbutton" onclick="failed()">Assign EMT</button>
+            </div>
+        </div>
+        <p><p></p></p>
+        <div class="container">
+            <h2>Team Number #2 <span class="status">Available</span></h2>
+            <h3>Purdue University Medical Response </h3>
+            <p><b>Team Leader:</b> Duong Lam</p>
+            <p><b>Team ID:</b> EMT-1002</p>
+            <p><b>Location:</b> Station 2, 400 S Salisbury St, West Lafayette</p>
+            <p><b>Team Size:</b> 3 Members</p>
+            <p><b>Members:</b>
+                <ul>
+                    <li><b>Team Leader:</b> Duong Lam (6 years of service)</li>
+                    <li><b>EMT Member:</b> Sarah White (4 years of service)</li>
+                    <li><b>EMT Member:</b> Thomas Clark (3 years of service)</li>
+                </ul>
+            </p>
+            <p><b>Certifications:</b>
+                <ul>
+                    <li>Basic Life Support (BLS)</li>
+                    <li>Advanced Trauma Life Support (ATLS)</li>
+                    <li>Advanced Cardiovascular Life Support (ACLS)</li>
+                </ul>
+            </p>
+            <p><b>Medical Equipment Onboard:</b>
+                <ul>
+                    <li>Defibrillator (AED)</li>
+                    <li>Pain Management Kit</li>
+                    <li>Spinal Immobilization Kit</li>
+                </ul>
+            </p>
+            <p><b>Current Availability:</b> Available</p>
+            <p><b>Specializations:</b>
+                <ul>
+                    <li>Trauma and Medical Emergencies</li>
+                    <li>Advanced Airway Management</li>
+                </ul>
+            </p>
+            <p><b>Performance Review:</b> A well-balanced team with specialized skills in trauma care and cardiac emergencies. Works efficiently under pressure in high-stress situations.</p>
+            <div class="button-container">
+                <button type="submit" class="submit-button" onclick="message()">Assign EMT</button>
+            </div>
+        </div>
+        <p><p></p></p>
+        <div class="container">
+            <h2>Team Number #3 <span class="status">Available</span></h2>
+            <h3>Lafayette Critical Care Team</h3>
+            <p><b>Team Leader:</b> Kieu Minh Tuan</p>
+            <p><b>Team ID:</b> EMT-1003</p>
+            <p><b>Location:</b> Station 3, 1500 W State St, West Lafayette</p>
+            <p><b>Team Size:</b> 4 Members</p>
+            <p><b>Members:</b>
+                <ul>
+                    <li><b>Team Leader:</b> Kieu Minh Tuan (7 years of service)</li>
+                    <li><b>EMT Member:</b> Long Luu (6 years of service)</li>
+                    <li><b>EMT Member:</b> Megan Patel (4 years of service)</li>
+                    <li><b>EMT Member:</b> Jessica Taylor (5 years of service)</li>
+                </ul>
+            </p>
+            <p><b>Certifications:</b>
+                <ul>
+                    <li>Advanced Cardiovascular Life Support (ACLS)</li>
+                    <li>Advanced Trauma Life Support (ATLS)</li>
+                    <li>Basic Life Support (BLS)</li>
+                </ul>
+            </p>
+            <p><b>Medical Equipment Onboard:</b>
+                <ul>
+                    <li>Defibrillator (AED)</li>
+                    <li>Trauma Kits</li>
+                    <li>Advanced Airway Kits</li>
+                    <li>Oxygen Therapy Equipment</li>
+                </ul>
+            </p>
+            <p><b>Current Availability:</b> Available</p>
+            <p><b>Specializations:</b>
+                <ul>
+                    <li>Cardiac Emergencies</li>
+                    <li>Trauma Care</li>
+                    <li>Advanced Airway Management</li>
+                </ul>
+            </p>
+            <p><b>Performance Review:</b> Excellent at managing critical trauma cases and ensuring rapid, safe transport of patients to hospitals. Known for strong teamwork in handling high-pressure calls.</p>
+            <div class="button-container">
+                <button type="submit" class="submit-button" onclick="message()">Assign EMT</button>
+            </div>
+        </div>
+        <p><p></p></p>
+        <div class="container">
+            <h2>Team Number #4 <span class="status">Available</span></h2>
+            <h3>Boilermaker Medical Response</h3>
+            <p><b>Team Leader:</b> Cris Phan</p>
+            <p><b>Team ID:</b> EMT-1004</p>
+            <p><b>Location:</b> Station 5, 1100 N University St, West Lafayette</p>
+            <p><b>Team Size:</b> 2 Members</p>
+            <p><b>Members:</b>
+                <ul>
+                    <li><b>Team Leader:</b> Cris Phan (3 years of service)</li>
+                    <li><b>EMT Member:</b> Ethan Lee (2 years of service)</li>
+                </ul>
+            </p>
+            <p><b>Certifications:</b>
+                <ul>
+                    <li>Basic Life Support (BLS)</li>
+                    <li>Trauma Care Specialist</li>
+                </ul>
+            </p>
+            <p><b>Medical Equipment Onboard:</b>
+                <ul>
+                    <li>Defibrillator (AED)</li>
+                    <li>Basic Trauma Kit</li>
+                    <li>Pain Management Kit</li>
+                </ul>
+            </p>
+            <p><b>Current Availability:</b> Available</p>
+            <p><b>Specializations:</b>
+                <ul>
+                    <li>Basic Trauma and Medical Emergencies</li>
+                    <li>Cardiovascular Emergencies</li>
+                </ul>
+            </p>
+            <p><b>Performance Review:</b> Known for effective and timely responses, specializing in trauma management and basic care.</p>
+            
+            <div class="button-container">
+                <button type="submit" class="submit-button" onclick="message()">Assign EMT</button>
+            </div>
+        </div>
+        <p><p></p></p>
+        <div class="container">
+            <h2>Team Number #5 <span class="busy">Unavailable</span></h2>
+            <h3>Emergency Response Unit 9</h3>
+            <p><b>Team Leader:</b> Jack J-97</p>
+            <p><b>Team ID:</b> EMT-1005</p>
+            <p><b>Location:</b> Station 6, 620 Northwestern Ave, West Lafayette</p>
+            <p><b>Team Size:</b> 4 Members</p>
+            <p><b>Members:</b>
+                <ul>
+                    <li><b>Team Leader:</b> Jack J-97 (6 years of service)</li>
+                    <li><b>EMT Member:</b> Dom Dom (7 years of service)</li>
+                    <li><b>EMT Member:</b> Sarah White (5 years of service)</li>
+                    <li><b>EMT Member:</b> Jessica Taylor (3 years of service)</li>
+                </ul>
+            </p>
+            <p><b>Certifications:</b>
+                <ul>
+                    <li>Advanced Life Support (ALS)</li>
+                    <li>Pediatric Advanced Life Support (PALS)</li>
+                    <li>Basic Life Support (BLS)</li>
+                </ul>
+            </p>
+            <p><b>Medical Equipment Onboard:</b>
+                <ul>
+                    <li>Defibrillator (AED)</li>
+                    <li>Trauma Kit</li>
+                    <li>Pediatric Care Kit</li>
+                    <li>Advanced Airway Kit</li>
+                </ul>
+            </p>
+            
+            <div class="button-container">
+                <button type="submit" class="submit-failedbutton" onclick="failed()">Assign EMT</button>
+            </div>
+        </div>
+    <script>
+        function message()
+        {
+            window.alert("Assign Successfully.")
+        }
+        function failed()
+        {
+            window.alert("Unable to Assign.")
+        }
+    </script>
+</body>
 </html>
