@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emergency Information Form</title>
+    <title>View All Emergency</title>
     <style>
         /* Basic button styling */
         body {
@@ -172,6 +172,28 @@
         .form-container .cancel {
             background-color: red;
         }
+        #editForm {
+            font-size: 18px; /* Increase font size */
+            padding: 20px; /* Add more padding for readability */
+            line-height: 1.5; /* Improve spacing between lines */
+            width: 90%; /* Increase width */
+            margin: 0 auto; /* Center the form */
+        }
+
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%; /* Take up full width */
+            font-size: 16px; /* Larger font size */
+            padding: 12px; /* Increase padding */
+        }
+
+        textarea {
+            height: 150px; /* Increase height */
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        .form-container {
+            max-width: 1000px; /* Make the form wider */
+        }
     </style>
 </head>
 <body>
@@ -259,24 +281,6 @@
             <p><b>Preferred Route or Obstacles:</b> Avoid Maple Avenue due to blockage; use 3rd Avenue instead.</p>
             <div class="button-container">
                 <button type="submit" class="submit-button" onclick="assignEMT()">Assign EMT</button>
-            </div>
-            <!-- Add a close button inside the form to hide it -->
-            <div class="form-popup" id="formCase2">
-                <div class="form-container">
-                    <h1>Report</h1>
-                    <p>Emergency Case ID #2 occurred at 5:20 PM on November 12, 2024, at the busy intersection of Main Street and West 3rd Avenue, near City Hall. EMT Squad #3, led by Team Leader Srinijia Burra, was dispatched promptly at 5:24 PM after receiving the report from Dispatcher ID D19876. The scene involved two patients: a 45-year-old male experiencing severe chest pain, conscious but in distress, and a 30-year-old female who was found unconscious with suspected internal injuries. The male patient, known to have a history of hypertension and diabetes, was given aspirin by a bystander, while CPR was administered to the female patient by a trained onlooker prior to EMT arrival. The environment posed challenges due to rush-hour traffic and nearby road construction, necessitating police assistance for crowd and traffic control. Initial assessments indicated the need for a defibrillator for potential cardiac support and advanced life support equipment for trauma management.</p>
-                    <button type="button" class="btn cancel" onclick="closeForm2()">Close</button>
-                    <!-- Content of the form -->
-                </div>
-            </div>
-            <div class="form-popup" id="editForm">
-                <div class="form-container">
-                    <h1>Edit Report</h1>
-                        <label for="Form"><b>Report:</b></label>
-                        <input type="text" placeholder="Write a report" name="report" required>
-                        <button type="submit" class="btn" onclick="message()">Submit</button>
-                        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                </div>
             </div>
         </div>
         <p><p></p></p>
@@ -381,23 +385,32 @@
             <div class="form-popup" id="formCase2">
                 <div class="form-container">
                     <h1>Report</h1>
-                    <p>AA</p>
+                    <p>As the EMT Leader, I arrived at the scene following a dispatch at 5:24 PM on November 12, 2024. The incident occurred at the intersection of Oak Street and Maple Avenue, a bustling area near the city park. The location was heavily populated, with bystanders gathering around to observe the aftermath of a car accident involving two vehicles. The atmosphere was tense, with heavy traffic complicating access to the scene and requiring immediate police assistance for traffic control.
+
+                        Upon arrival, my team and I noted that there were four patients involved in the incident. Patient 1, a male around 25 years old, was conscious but appeared to be in visible pain. Patient 2, a female approximately 30 years old, was similarly conscious and displaying signs of distress. Patient 3, a male about 35 years of age, was also awake and in discomfort. Patient 4, a female estimated to be 40 years old, was in the most concerning condition. While she was not fully unconscious, she was drowsy, disoriented, and required close monitoring to ensure her condition did not deteriorate further. None of the patients had significant known medical histories, which made rapid on-site assessment crucial.
+                        
+                        The scene was a challenge, as onlookers surrounded the vehicles, posing a potential obstacle for patient access and emergency response. Additionally, Maple Avenue was blocked, but Oak Street remained accessible, which allowed the EMT team to approach efficiently. One of the bystanders was performing CPR on Patient 4, demonstrating basic life support skills and providing vital aid until our arrival. Another bystander assisted Patient 1 by keeping them calm and offering reassurance, which helped reduce the patient’s anxiety.
+                        
+                        Given the nature of the incident, the team had to work promptly yet cautiously. Our first action was to ensure that the patients were stabilized, prioritizing Patient 4 due to her confused state, which indicated a potential risk of deterioration. Equipment such as a defibrillator was prepared in case Patient 4’s condition escalated into cardiac arrest. Extrication tools were also readied in case any patients required assistance to exit the vehicles safely. The preliminary assessment revealed no immediate physical hazards, but the potential for sudden traffic movement necessitated continuous vigilance and coordination with the police to manage crowd control and maintain a safe perimeter.
+                        
+                        Communication lines remained clear throughout the response, with no language barriers reported. Updates were efficiently relayed back to the dispatch center, ensuring all relevant parties remained informed. The estimated arrival time of our EMT Squad #3 was recorded as 5:24 PM, allowing a brief but essential window for pre-arrival preparations and coordination. Police support had already been requested to manage traffic flow, and we identified a nearby parking lot for ambulance positioning, which streamlined patient transfer.
+                        
+                        As we navigated the scene, we ensured the use of 3rd Avenue for better access, avoiding Maple Avenue due to its blockage. The primary focus remained on providing immediate and effective care while maintaining situational awareness to safeguard both patients and responders against any sudden environmental changes or unforeseen hazards. The team proceeded with a coordinated approach to assess, treat, and transport each patient, ensuring the highest level of care and efficiency.</p>
                     <button type="button" class="btn cancel" onclick="closeForm2()">Close</button>
                     <!-- Content of the form -->
                 </div>
             </div>
-            <div class="form-popup" id="editForm">
-                <div class="form-container">
-                    <h1>Edit Report</h1>
-                        <label for="email"><b>Email</b></label>
-                        <input type="text" placeholder="Write a report" name="report" required>
-                        <button type="submit" class="btn" onclick="message()">Submit</button>
-                        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                </div>
-            </div>
+            
         </div>
         <p><p></p></p>
-        
+        <div class="form-popup" id="editForm">
+            <div class="form-container">
+                <h3>Emergency Case Report</h3>
+                <textarea placeholder="Write a Detailed Report about the Emergency Case Scene" id="scene" name="scene" required></textarea>
+                    <button type="submit" class="btn" onclick="message()">Submit</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </div>
+        </div>
         <script>
         function editForm()
         {
